@@ -1,4 +1,5 @@
 {
+  "main": "main/index.js",
   "productName": "Mooshy",
   "description": "I love mooshy",
   "author": "fatton139",

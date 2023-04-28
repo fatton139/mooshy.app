@@ -12,6 +12,7 @@
 /.next/
 /dist/
 /dist-web/
+/main/
 
 # production
 /build
