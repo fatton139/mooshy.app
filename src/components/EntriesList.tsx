@@ -14,6 +14,7 @@ import { ColouredTags } from "./ColouredTags";
 import { CopyButton } from "./CopyButton";
 import { DownloadButton } from "./DownloadButton";
 import { VideoModal } from "./VideoModal";
+import urlJoin from "url-join";
 
 type Props = {
   listData: {
@@ -81,6 +82,7 @@ export const EntriesList: React.FunctionComponent<Props> = ({ listData }) => {
           createdAt,
           size,
         }) => {
+          const resourcesHref = urlJoin("/resources", href);
           return (
             <List.Item
               key={key}
@@ -104,7 +106,7 @@ export const EntriesList: React.FunctionComponent<Props> = ({ listData }) => {
                   type="text"
                   href={createResourceSrc(url)}
                 />,
-                <CopyButton key="copy " type="text" text="test" />,
+                <CopyButton key="copy" type="text" text={urlJoin(window.origin, resourcesHref)} />,
                 favorites[`${tableLookupKey}/${url}`] === undefined ? (
                   <Button
                     type="text"
@@ -126,7 +128,7 @@ export const EntriesList: React.FunctionComponent<Props> = ({ listData }) => {
               ]}
             >
               <List.Item.Meta
-                title={<Link href={href}>{title}</Link>}
+                title={<Link href={resourcesHref}>{title}</Link>}
                 description={
                   <>
                     {format(createdAt, "yyyy-MM-dd hh:mm:ss")}
