@@ -109,8 +109,8 @@ const Index: React.FunctionComponent<Props> = ({ data }) => {
         title: "Title",
         dataIndex: "title",
         key: "title",
-        // sorter: (a: { title: string }, b: { title: string }) =>
-        //   a.title.localeCompare(b.title),
+        sorter: (a: { title: string }, b: { title: string }) =>
+          a.title.localeCompare(b.title),
       },
       {
         title: "Created at",
@@ -119,15 +119,15 @@ const Index: React.FunctionComponent<Props> = ({ data }) => {
         sortDirections: ["ascend" as const, "descend" as const],
         defaultSortOrder: "ascend" as const,
         render: formatDate,
-        // sorter: (a: { "created-at": Date }, b: { "created-at": Date }) =>
-        //   compareAsc(a["created-at"], b["created-at"]),
+        sorter: (a: { "created-at": Date }, b: { "created-at": Date }) =>
+          compareAsc(a["created-at"], b["created-at"]),
       },
       {
         title: "Size",
         dataIndex: "size",
         key: "size",
         render: (value: number) => prettyBytes(value),
-        // sorter: (a: { size: number }, b: { size: number }) => a.size - b.size,
+        sorter: (a: { size: number }, b: { size: number }) => a.size - b.size,
         sortDirections: ["ascend" as const, "descend" as const],
       },
       {

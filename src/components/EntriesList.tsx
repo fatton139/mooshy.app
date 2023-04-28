@@ -106,7 +106,11 @@ export const EntriesList: React.FunctionComponent<Props> = ({ listData }) => {
                   type="text"
                   href={createResourceSrc(url)}
                 />,
-                <CopyButton key="copy" type="text" text={urlJoin(window.origin, resourcesHref)} />,
+                <CopyButton
+                  key="copy"
+                  type="text"
+                  text={urlJoin(window.origin, resourcesHref)}
+                />,
                 favorites[`${tableLookupKey}/${url}`] === undefined ? (
                   <Button
                     type="text"
