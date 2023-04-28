@@ -1,0 +1,73 @@
+{
+  "main": "main/index.js",
+  "productName": "Mooshy",
+  "description": "I love mooshy",
+  "author": "fatton139",
+  "name": "mooshy",
+  "homepage": "https://fatton139.github.io/mooshy.app",
+  "version": "1.0.0",
+  "scripts": {
+    "clean": "rimraf dist main dist src/.next",
+    "dev-web": "next dev",
+    "dev-electron": "yarn build-electron && electron .",
+    "build-web": "next build",
+    "build-electron": "tsc -p electron-src",
+    "build": "yarn build-web && yarn build-electron",
+    "pack-app": "yarn build && electron-builder --dir",
+    "dist": "yarn build && electron-builder",
+    "type-check": "tsc -p ./src/tsconfig.json && tsc -p ./electron-src/tsconfig.json",
+    "format": "prettier --write .",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.0.1",
+    "antd": "^5.4.4",
+    "date-fns": "^2.29.3",
+    "electron-is-dev": "^1.1.0",
+    "electron-next": "^3.1.5",
+    "pretty-bytes": "^6.1.0",
+    "react": "^18.2.0",
+    "react-countup": "^6.4.2",
+    "react-dom": "^18.2.0",
+    "reset-css": "^5.0.1",
+    "swr": "^2.1.4",
+    "url-join": "^5.0.0",
+    "use-local-storage-state": "^18.3.2",
+    "uuid": "^9.0.0",
+    "video-react": "^0.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.0",
+    "@types/react": "^18.0.38",
+    "@types/react-dom": "^18.0.11",
+    "@types/url-join": "^4.0.1",
+    "@types/uuid": "^9.0.1",
+    "@types/video-react": "^0.15.1",
+    "electron": "^24.1.2",
+    "electron-builder": "^23.0.3",
+    "eslint": "8.39.0",
+    "eslint-config-next": "13.3.1",
+    "next": "latest",
+    "prettier": "^2.8.8",
+    "rimraf": "^3.0.0",
+    "typescript": "^5.0.4"
+  },
+  "build": {
+    "asar": true,
+    "win": {
+      "icon": "build-resouces/icon.png"
+    },
+    "nsis": {
+      "installerIcon": "build-resouces/icon.png",
+      "installerHeaderIcon": "build-resouces/icon.png",
+      "deleteAppDataOnUninstall": true
+    },
+    "files": [
+      "main",
+      "resources/**/*"
+    ],
+    "directories": {
+      "buildResources": "build-resources"
+    }
+  }
+}
