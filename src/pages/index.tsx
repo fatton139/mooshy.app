@@ -11,10 +11,10 @@ import { v4 as uuid } from "uuid";
 import { ColouredTags } from "../components/ColouredTags";
 import { DownloadButton } from "../components/DownloadButton";
 import { VideoModal } from "../components/VideoModal";
-import { MOOSHY_DB_URI } from "../consts/mooshy";
-import { AppData } from "../types/app";
-import { formatDate } from "../utils/format-date";
 import { assasindie, jz, mushy } from "../consts/players";
+import { AppData } from "../types/app";
+import { createResourceSrc } from "../utils/create-resource-src";
+import { formatDate } from "../utils/format-date";
 
 type Props = {
   data: AppData;
@@ -172,7 +172,7 @@ const Index: React.FunctionComponent<Props> = ({ data }) => {
             >
               Watch
             </Button>
-            <DownloadButton href={urljoin(MOOSHY_DB_URI, url)} />
+            <DownloadButton href={createResourceSrc(url)} />
             <Button
               icon={
                 favorites[`${tableLookupKey}/${url}`] === undefined ? (

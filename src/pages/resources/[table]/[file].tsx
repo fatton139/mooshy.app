@@ -9,6 +9,7 @@ import { ColouredTags } from "../../../components/ColouredTags";
 import { MOOSHY_DB_URI } from "../../../consts/mooshy";
 import { AppData, AppEntry } from "../../../types/app";
 import { formatDate } from "../../../utils/format-date";
+import { createResourceSrc } from "../../../utils/create-resource-src";
 
 const FilePage: React.FunctionComponent<{
   data: AppData;
@@ -23,7 +24,7 @@ const FilePage: React.FunctionComponent<{
   const entry = unknownTable[table]?.find(({ name }) => name === file);
 
   if (entry) {
-    const href = urljoin(MOOSHY_DB_URI, entry.url);
+    const href = createResourceSrc(entry.url);
 
     return (
       <>

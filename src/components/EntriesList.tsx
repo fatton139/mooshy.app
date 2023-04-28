@@ -8,9 +8,8 @@ import { format } from "date-fns";
 import Link from "next/link";
 import prettyBytes from "pretty-bytes";
 import { useCallback, useState } from "react";
-import urljoin from "url-join";
-import { MOOSHY_DB_URI } from "../consts/mooshy";
 import { useFavorites } from "../hooks/use-favorites";
+import { createResourceSrc } from "../utils/create-resource-src";
 import { ColouredTags } from "./ColouredTags";
 import { CopyButton } from "./CopyButton";
 import { DownloadButton } from "./DownloadButton";
@@ -46,7 +45,7 @@ const PlaceholderVideo: React.FunctionComponent<{ url: string }> = ({
           setReady(true);
         }}
       >
-        <source src={urljoin(MOOSHY_DB_URI, url)} type="video/mp4" />
+        <source src={createResourceSrc(url)} type="video/mp4" />
       </video>
     </>
   );
@@ -103,7 +102,7 @@ export const EntriesList: React.FunctionComponent<Props> = ({ listData }) => {
                 <DownloadButton
                   key="download"
                   type="text"
-                  href={urljoin(MOOSHY_DB_URI, url)}
+                  href={createResourceSrc(url)}
                 />,
                 <CopyButton key="copy " type="text" text="test" />,
                 favorites[`${tableLookupKey}/${url}`] === undefined ? (

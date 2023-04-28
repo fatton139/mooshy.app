@@ -1,7 +1,6 @@
 import { Modal } from "antd";
-import urljoin from "url-join";
 import { Player } from "video-react";
-import { MOOSHY_DB_URI } from "../consts/mooshy";
+import { createResourceSrc } from "../utils/create-resource-src";
 
 export const VideoModal: React.FunctionComponent<{
   modalData?: {
@@ -24,7 +23,7 @@ export const VideoModal: React.FunctionComponent<{
       destroyOnClose
     >
       <Player>
-        {modalData && <source src={urljoin(MOOSHY_DB_URI, modalData.url)} />}
+        {modalData && <source src={createResourceSrc(modalData.url)} />}
       </Player>
     </Modal>
   );
