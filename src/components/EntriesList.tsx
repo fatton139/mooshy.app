@@ -15,6 +15,7 @@ import { CopyButton } from "./CopyButton";
 import { DownloadButton } from "./DownloadButton";
 import { VideoModal } from "./VideoModal";
 import urlJoin from "url-join";
+import { getBaseUrl } from "../utils/get-base-url";
 
 type Props = {
   listData: {
@@ -109,7 +110,7 @@ export const EntriesList: React.FunctionComponent<Props> = ({ listData }) => {
                 <CopyButton
                   key="copy"
                   type="text"
-                  text={urlJoin(window.origin, resourcesHref)}
+                  text={urlJoin(getBaseUrl(), resourcesHref)}
                 />,
                 favorites[`${tableLookupKey}/${url}`] === undefined ? (
                   <Button

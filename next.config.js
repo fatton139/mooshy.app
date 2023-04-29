@@ -8,6 +8,14 @@ const getAssetPrefix = () => {
   }
 };
 
+const getBaseUrl = () => {
+  if (process.env.CI) {
+    return "/mooshy.app";
+  } else {
+    return undefined;
+  }
+};
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -15,6 +23,7 @@ const nextConfig = {
   output: "export",
   distDir: "dist-web",
   assetPrefix: getAssetPrefix(),
+  basePath: getBaseUrl(),
 };
 
 module.exports = nextConfig;

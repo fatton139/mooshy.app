@@ -15,7 +15,7 @@
     "build": "yarn build-web && yarn build-electron",
     "pack-app": "yarn build && electron-builder --dir",
     "dist": "yarn build && electron-builder",
-    "type-check": "tsc -p ./src/tsconfig.json && tsc -p ./electron-src/tsconfig.json",
+    "type-check": "tsc -p ./tsconfig.json && tsc -p ./electron-src/tsconfig.json",
     "format": "prettier --write .",
     "lint": "next lint"
   },
