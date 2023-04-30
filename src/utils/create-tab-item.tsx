@@ -1,4 +1,3 @@
-import urljoin from "url-join";
 import { v4 as uuid } from "uuid";
 import { EntriesList } from "../components/EntriesList";
 import { allTables } from "../consts/players";
@@ -14,9 +13,9 @@ const Tab: React.FunctionComponent<{
       return entry.map(({ meta, playerName, url, tableLookupKey, name }) => {
         return {
           key: uuid(),
-          href: urljoin(tableLookupKey, name),
+          name,
           url,
-          tableLookupKey,
+          table: tableLookupKey,
           title: meta.title,
           description: meta.description,
           tags: meta.tags,

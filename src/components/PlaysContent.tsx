@@ -21,8 +21,8 @@ export const PlaysContent: React.FunctionComponent<Props> = ({
       return entry.map(({ meta, playerName, url, tableLookupKey, name }) => {
         return {
           key: uuid(),
-          href: urljoin(tableLookupKey, name),
-          tableLookupKey,
+          name,
+          table: tableLookupKey,
           url,
           title: meta.title,
           description: meta.description,
