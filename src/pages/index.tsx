@@ -41,7 +41,10 @@ const Index: React.FunctionComponent<Props> = ({ data }) => {
       return entry.map(({ url, name, tableLookupKey, playerName, meta }) => {
         return {
           key: uuid(),
-          href: urljoin("resources", tableLookupKey, name),
+          view: {
+            table: tableLookupKey,
+            name,
+          },
           "video-data": { url, title: meta.title, tableLookupKey },
           title: meta.title,
           "player-name": playerName,
@@ -68,9 +71,21 @@ const Index: React.FunctionComponent<Props> = ({ data }) => {
     () => [
       {
         title: "",
-        dataIndex: "href",
-        key: "href",
-        render: (href: string) => <Link href={href}>View</Link>,
+        dataIndex: "view",
+        key: "view",
+        render: ({ name, table }: { name: string; table: string }) => (
+          <Link
+            href={{
+              pathname: "resources",
+              query: {
+                table,
+                file: name,
+              },
+            }}
+          >
+            View
+          </Link>
+        ),
       },
       {
         title: "Gamer",

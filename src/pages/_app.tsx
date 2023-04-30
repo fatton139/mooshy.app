@@ -274,7 +274,7 @@ export default function App({
             <Row gutter={[10, 10]}>
               <Col span={24}>
                 <Breadcrumb
-                  items={router.asPath
+                  items={router.pathname
                     .split("/")
                     .map((path) => ({ title: path }))}
                   style={{ textTransform: "capitalize" }}

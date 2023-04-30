@@ -8,16 +8,6 @@ const getAssetPrefix = () => {
   }
 };
 
-const getBaseUrl = () => {
-  if (process.env.CI) {
-    return "/mooshy.app";
-  } else if (process.env.NODE_ENV === "production") {
-    return "/mooshy.app";
-  } else {
-    return "/mooshy.app";
-  }
-};
-
 /**
  * @type {import('next').NextConfig}
  */

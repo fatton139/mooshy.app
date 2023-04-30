@@ -1,6 +1,5 @@
 import { Card } from "antd";
 import { useMemo } from "react";
-import urljoin from "url-join";
 import useLocalStorage from "use-local-storage-state";
 import { v4 as uuid } from "uuid";
 import { EntriesList } from "../components/EntriesList";
@@ -29,9 +28,9 @@ const Favorites: React.FunctionComponent<Props> = ({ data }) => {
           .map(({ meta, playerName, url, tableLookupKey, name }) => {
             return {
               key: uuid(),
-              href: urljoin(tableLookupKey, name),
               url,
-              tableLookupKey,
+              table: tableLookupKey,
+              name,
               title: meta.title,
               description: meta.description,
               tags: meta.tags,

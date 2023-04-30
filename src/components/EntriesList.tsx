@@ -8,20 +8,20 @@ import { format } from "date-fns";
 import Link from "next/link";
 import prettyBytes from "pretty-bytes";
 import { useCallback, useState } from "react";
+import urlJoin from "url-join";
 import { useFavorites } from "../hooks/use-favorites";
 import { createResourceSrc } from "../utils/create-resource-src";
+import { getBaseUrl } from "../utils/get-base-url";
 import { ColouredTags } from "./ColouredTags";
 import { CopyButton } from "./CopyButton";
 import { DownloadButton } from "./DownloadButton";
 import { VideoModal } from "./VideoModal";
-import urlJoin from "url-join";
-import { getBaseUrl } from "../utils/get-base-url";
 
 type Props = {
   listData: {
     key: any;
-    href: string;
-    tableLookupKey: string;
+    name: string;
+    table: string;
     url: string;
     title: string;
     description: string | undefined;
@@ -75,15 +75,19 @@ export const EntriesList: React.FunctionComponent<Props> = ({ listData }) => {
         renderItem={({
           key,
           title,
-          href,
-          tableLookupKey,
+          name,
+          table,
           description,
           url,
           tags,
           createdAt,
           size,
         }) => {
-          const resourcesHref = urlJoin("/resources", href);
+          const mutable = new URL(urlJoin(getBaseUrl(), "resources"));
+          mutable.searchParams.set("table", table);
+          mutable.searchParams.set("file", name);
+          const resourcesUrl = mutable.toString();
+
           return (
             <List.Item
               key={key}
@@ -107,16 +111,12 @@ export const EntriesList: React.FunctionComponent<Props> = ({ listData }) => {
                   type="text"
                   href={createResourceSrc(url)}
                 />,
-                <CopyButton
-                  key="copy"
-                  type="text"
-                  text={urlJoin(getBaseUrl(), resourcesHref)}
-                />,
-                favorites[`${tableLookupKey}/${url}`] === undefined ? (
+                <CopyButton key="copy" type="text" text={resourcesUrl} />,
+                favorites[`${table}/${url}`] === undefined ? (
                   <Button
                     type="text"
                     icon={<HeartOutlined />}
-                    onClick={() => updateFavorites(tableLookupKey, url)}
+                    onClick={() => updateFavorites(table, url)}
                   >
                     Favorite
                   </Button>
@@ -125,7 +125,7 @@ export const EntriesList: React.FunctionComponent<Props> = ({ listData }) => {
                     type="text"
                     danger
                     icon={<DeleteOutlined />}
-                    onClick={() => updateFavorites(tableLookupKey, url)}
+                    onClick={() => updateFavorites(table, url)}
                   >
                     Unfavorite
                   </Button>
@@ -133,7 +133,7 @@ export const EntriesList: React.FunctionComponent<Props> = ({ listData }) => {
               ]}
             >
               <List.Item.Meta
-                title={<Link href={resourcesHref}>{title}</Link>}
+                title={<Link href={resourcesUrl}>{title}</Link>}
                 description={
                   <>
                     {format(createdAt, "yyyy-MM-dd hh:mm:ss")}

@@ -4,10 +4,10 @@ import { useRouter } from "next/router";
 import prettyBytes from "pretty-bytes";
 import React from "react";
 import { Player } from "video-react";
-import { ColouredTags } from "../../../components/ColouredTags";
-import { AppData, AppEntry } from "../../../types/app";
-import { formatDate } from "../../../utils/format-date";
-import { createResourceSrc } from "../../../utils/create-resource-src";
+import { ColouredTags } from "../../components/ColouredTags";
+import { AppData, AppEntry } from "../../types/app";
+import { createResourceSrc } from "../../utils/create-resource-src";
+import { formatDate } from "../../utils/format-date";
 
 const FilePage: React.FunctionComponent<{
   data: AppData;
