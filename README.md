@@ -6,3 +6,6 @@ I love mooshy
 | ------- | ------------------------ | ------------------- |
 | Web     | `/src`                   | `/dist-web`         |
 | Desktop | `/electron-src`          | `/dist`             |
+
+# Contributors
+[@Josh-Zhou](https://github.com/Josh-Zhou)
